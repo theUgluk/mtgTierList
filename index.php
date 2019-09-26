@@ -90,96 +90,111 @@
   <body>
 
     <?php
-    if (filemtime("data.csv") < strtotime("-30 min")) {
-        $url = "https://docs.google.com/spreadsheets/d/13sruU0j41C1gB-AO_kxK1tjRtyb50bYC9WmQLNwruOI/export?format=csv";
-        file_put_contents("data.csv", file_get_contents($url));
-    }
-    $fileHandle = fopen("data.csv", "r");
-    $apiUrl = "https://api.scryfall.com/";
-    $image = 'large';
-    ?>
-    <?php
-    function string_cleanr($string) {
-    	$string = trim($string);
-    	$string = strip_tags($string);
-    	$string = htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
-    	$string = str_replace("\n", "", $string);
-    	$string = trim($string);
-    	// if (get_magic_quotes_gpc()) $string = stripslashes($string);
-    	return $string;
-    }?>
+        require 'setup.php';
+        require 'functions.php';
 
-    <button class="btn">Klik hier!</button>
-
-    <div style="display: flex; max-width: 100vw; flex-wrap: wrap; background-color: #baeaf7;">
-
-
-    <?php
-    while (($row = fgetcsv($fileHandle, 0, ",")) !== FALSE) {
-        if ($row[2] !== "") {
-            $cardName = urlencode($row[2]);
-            $img = "imgs/" . str_replace("//", "", urldecode($cardName)) . ".jpg";
-            if (!file_exists($img)) {
-                $cardFind = file_get_contents($apiUrl . "cards/named?format=image&version=large&exact=" . $cardName);
-                file_put_contents($img, $cardFind);
-            }
-            ?>
-            <div class="card-container">
-                <img src="<?= $img ?>" />
-                <div class="info">
-                    <table>
-                        <tr>
-                            <td>
-                                J's mark:
-                            </td>
-                            <td>
-                                <?= $row[0] ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                M's mark:
-                            </td>
-                            <td>
-                                <?= $row[1] ?>
-                            </td>
-                        </tr>
-                        <?php
-                        if ($row[4] !== "") {
-                            ?>
-                            <tr>
-                                <td>
-                                    Ceiling:
-                                </td>
-                                <td>
-                                    <?= $row[4] ?>
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-                        <?php
-                        if ($row[5] !== "") {
-                            ?>
-                            <tr>
-                                <td>
-                                    Sideboard:
-                                </td>
-                                <td>
-                                    <?= $row[5] ?>
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-                    </table>
-                </div>
-            </div>
-            <?php
+        $types = array(
+            "artifact",
+            "creature",
+            "enchantment",
+            "instant",
+            "land",
+            "planeswalker",
+            "sorcery"
+        );
+        /*
+         * We're gonna keep track of the names of the cards of the type that's
+         * selected and filter them in the while. It's ugly as hell,
+         * but what in this script ain't?
+         */
+        $typeSpecific = array();
+        if(isset($_GET['type']) && in_array($_GET['type'], $types, true)){
+            $typeSpecific = get_type_data($_GET['type']);
         }
-    }
-    ?>
+        if (filemtime("data.csv") < strtotime("-30 min")) {
+            $url = "https://docs.google.com/spreadsheets/d/13sruU0j41C1gB-AO_kxK1tjRtyb50bYC9WmQLNwruOI/export?format=csv";
+            file_put_contents("data.csv", file_get_contents($url));
+        }
 
+        $fileHandle = fopen("data.csv", "r");
+        $apiUrl = "https://api.scryfall.com/";
+        $image = 'large';
+
+        foreach($types as $type){
+            echo '<a href="?type=' . $type . '">
+                <button class="btn">' . ucfirst($type) . '</button>
+            </a>';
+        }
+    ?>
+    <div style="display: flex; max-width: 100vw; flex-wrap: wrap; background-color: #baeaf7;">
+        <?php
+            while (($row = fgetcsv($fileHandle, 0, ",")) !== FALSE) {
+                if ($row[2] !== "") {
+                    $clearName = str_replace("//", "", $row[2]);
+                    if(count($typeSpecific) === 0 || in_array($clearName, $typeSpecific)){
+                        $cardName = urlencode($row[2]);
+                        $img = "imgs/" . $clearName . ".jpg";
+                        if (!file_exists($img)) {
+                            $cardFind = file_get_contents($apiUrl . "cards/named?format=image&version=large&exact=" . $cardName);
+                            file_put_contents($img, $cardFind);
+                        }
+                        ?>
+                        <div class="card-container">
+                            <img src="<?= $img ?>" />
+                            <div class="info">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            J's mark:
+                                        </td>
+                                        <td>
+                                            <?= $row[0] ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            M's mark:
+                                        </td>
+                                        <td>
+                                            <?= $row[1] ?>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    if ($row[4] !== "") {
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                Ceiling:
+                                            </td>
+                                            <td>
+                                                <?= $row[4] ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($row[5] !== "") {
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                Sideboard:
+                                            </td>
+                                            <td>
+                                                <?= $row[5] ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                }
+            }
+        ?>
     </div>
   </body>
 </html>
