@@ -102,14 +102,18 @@
             "planeswalker",
             "sorcery"
         );
-        /*
-         * We're gonna keep track of the names of the cards of the type that's
-         * selected and filter them in the while. It's ugly as hell,
-         * but what in this script ain't?
-         */
-        $typeSpecific = array();
-        if(isset($_GET['type']) && in_array($_GET['type'], $types, true)){
-            $typeSpecific = get_type_data($_GET['type']);
+        $foundNames = array();
+        if(isset($_GET['query'])){
+            $foundNames = search_query($_GET['query']);
+        } else {
+            /*
+             * We're gonna keep track of the names of the cards of the type that's
+             * selected and filter them in the while. It's ugly as hell,
+             * but what in this script ain't?
+             */
+            if(isset($_GET['type']) && in_array($_GET['type'], $types, true)){
+                $foundNames = get_type_data($_GET['type']);
+            }
         }
         if (filemtime("data.csv") < strtotime("-30 min")) {
             $url = "https://docs.google.com/spreadsheets/d/13sruU0j41C1gB-AO_kxK1tjRtyb50bYC9WmQLNwruOI/export?format=csv";
@@ -126,12 +130,22 @@
             </a>';
         }
     ?>
+    <br />
+    <form method="get">
+        <input type="text" name="query" value="<?= isset($_GET['query']) ? $_GET['query'] : "" ?>" />
+        <input type="submit" value="search" />
+    </form>
     <div style="display: flex; max-width: 100vw; flex-wrap: wrap; background-color: #baeaf7;">
         <?php
             while (($row = fgetcsv($fileHandle, 0, ",")) !== FALSE) {
                 if ($row[2] !== "") {
                     $clearName = str_replace("//", "", $row[2]);
-                    if(count($typeSpecific) === 0 || in_array($clearName, $typeSpecific)){
+                    if(is_array($foundNames)
+                        && (
+                            count($foundNames) === 0
+                            || in_array($clearName, $foundNames)
+                        )
+                    ){
                         $cardName = urlencode($row[2]);
                         $img = "imgs/" . $clearName . ".jpg";
                         if (!file_exists($img)) {

@@ -22,4 +22,12 @@
             return json_decode(file_get_contents("typeCache/" . $type . ".json"), true);
         }
     }
+    function search_query($query){
+        $url = "http://api.scryfall.com/cards/search?q=" . urlencode("set:eld " . urldecode($_GET['query']));
+        $res = json_decode(file_get_contents($url), true);
+        foreach($res['data'] as $card){
+            $array[] = str_replace("//", "", $card['name']);
+        }
+        return $array;
+    }
 ?>
