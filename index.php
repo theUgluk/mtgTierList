@@ -17,6 +17,27 @@
         width: 100%;
         box-sizing: border-box;
       }
+      
+      .searchExplainer{
+          color: grey;
+      }
+      
+      #search {
+        width: 95%;
+        height: 30px;
+        font-size: 30px;
+        border: 2px solid blue;
+      }
+      #searchSubmit{
+          width: 4%;
+          height: 36px;
+          background-color: blue;
+          font-size: 20px;
+          color: white;
+          border: 2px solid blue;
+          vertical-align: top;
+          border-radius: 0 5px 5px 0;
+      }
 
       .card-container {
         flex: 0 1 100%;
@@ -125,15 +146,15 @@
         $image = 'large';
 
         foreach($types as $type){
-            echo '<a href="?type=' . $type . '">
-                <button class="btn">' . ucfirst($type) . '</button>
-            </a>';
+            echo '<a href="?type=' . $type . '"><button class="btn">' . ucfirst($type) . '</button></a>';
         }
     ?>
     <br />
     <form method="get">
-        <input type="text" name="query" value="<?= isset($_GET['query']) ? $_GET['query'] : "" ?>" />
-        <input type="submit" value="search" />
+        <input type="text" id="search" placeholder="Search" name="query" value="<?= isset($_GET['query']) ? $_GET['query'] : "" ?>" /><input type="submit" id="searchSubmit" value="search" /><br />
+        <small class="searchExplainer">
+            You can use Scryfall query's here
+        </small>
     </form>
     <div style="display: flex; max-width: 100vw; flex-wrap: wrap; background-color: #baeaf7;">
         <?php
