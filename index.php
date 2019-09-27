@@ -41,11 +41,10 @@
             }
 
             .card-container {
-                flex: 0 1 100%;
+                flex: 0 0 250px;
+                justify-content: space-evenly;
                 margin: 0.5rem;
-                /* padding: 0.5rem; */
                 background-color: #fff;
-                /* border-bottom: 4px solid #aaa; */
                 border-radius: 15px;
                 overflow: hidden;
                 box-shadow: 0px 3px 5px rgba(0,0,0,0.5);
@@ -100,21 +99,21 @@
                 }
             }
             @media screen and (min-width: 500px) {
-                .card-container {
+                /* .card-container {
                     flex: 0 0 45%;
-                }
+                } */
             }
 
             @media screen and (min-width: 800px) {
-                .card-container {
+                /* .card-container {
                     flex: 0 0 20%;
-                }
+                } */
             }
 
             @media screen and (min-width: 1500px) {
-                .card-container {
+                /* .card-container {
                     flex: 0 0 15%;
-                }
+                } */
             }
 
         </style>
