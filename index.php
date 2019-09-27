@@ -59,7 +59,7 @@
                   <h3>Filter cards</h3>
                   <form method="get">
                       <input type="text" id="search" placeholder="Search" name="query" value="<?= isset($_GET['query']) ? $_GET['query'] : "" ?>" />
-                      <small class="searchExplainer">
+                      <small>
                           You can use Scryfall query's here
                       </small>
                       <input type="submit" id="searchSubmit" class="btn" value="search" />
@@ -69,9 +69,7 @@
                   <a href="./" class="sidebar-link">All</a>
                   <?php
                   foreach ($types as $type) {
-                      // echo '<a href="?type=' . $type . '"><button class="btn">' . ucfirst($type) . '</button></a>';
-                      // echo '<div><a href="?type=' . $type . '"><input type="radio" id="' . $type .'" name="card-type"><label for="' . $type .'">' . ucfirst($type) . '</label></a></div>';
-                      echo '<a href="?type=' . $type . '" class="sidebar-link">' . ucfirst($type) . '</a>';
+                    echo '<a href="?type=' . $type . '" class="sidebar-link">' . ucfirst($type) . '</a>';
                   } ?>
 
                 </div>
@@ -99,53 +97,29 @@
                               ?>
                               <div class="card-container">
                                   <img src="<?= $img ?>" />
-                                  <div class="info">
-                                      <table>
-                                          <tr>
-                                              <td>
-                                                  J's mark:
-                                              </td>
-                                              <td>
-                                                  <?= $row[0] ?>
-                                              </td>
-                                          </tr>
-                                          <tr>
-                                              <td>
-                                                  M's mark:
-                                              </td>
-                                              <td>
-                                                  <?= $row[1] ?>
-                                              </td>
-                                          </tr>
-                                          <?php
-                                          if ($row[4] !== "") {
-                                              ?>
-                                              <tr>
-                                                  <td>
-                                                      Ceiling:
-                                                  </td>
-                                                  <td>
-                                                      <?= $row[4] ?>
-                                                  </td>
-                                              </tr>
-                                              <?php
-                                          }
-                                          ?>
-                                          <?php
-                                          if ($row[5] !== "") {
-                                              ?>
-                                              <tr>
-                                                  <td>
-                                                      Sideboard:
-                                                  </td>
-                                                  <td>
-                                                      <?= $row[5] ?>
-                                                  </td>
-                                              </tr>
-                                              <?php
-                                          }
-                                          ?>
-                                      </table>
+                                  <div class="card-info">
+                                    <div class="card-marks">
+                                      <div class="card-mark">
+                                        <small class="mark-name">Justlolaman</small>
+                                        <span class="mark"><?= $row[0] ?></span>
+                                      </div>
+                                      <div class="card-mark">
+                                        <small class="mark-name">M0bieus</small>
+                                        <span class="mark"><?= $row[1] ?></span>
+                                      </div>
+                                      <?php if ($row[3] !== "") { ?>
+                                        <div class="card-mark card-mark-lower">
+                                          <small class="mark-name">Ceiling</small>
+                                          <span class="mark"><?= $row[3] ?></span>
+                                        </div>
+                                      <?php } ?>
+                                      <?php if ($row[4] !== "") { ?>
+                                        <div class="card-mark card-mark-lower">
+                                          <small class="mark-name">Sideboard</small>
+                                          <span class="mark">Yes</span>
+                                        </div>
+                                      <?php } ?>
+                                    </div>
                                   </div>
                               </div>
                               <?php
