@@ -14,7 +14,7 @@ html, body {
 
 h3 {
   font-size: 2em;
-  margin: 0;
+  margin: 0 0 0.5em 0;
 }
 
 a {
@@ -24,7 +24,7 @@ a {
 
 .flex-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 aside.sidebar {
@@ -37,13 +37,12 @@ aside.sidebar {
 }
 
 .sidebar-wrapper {
-  position: sticky;
-  top: 1rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .sidebar-module {
   padding: 1rem 0;
-  border-bottom: 1px solid #d1d8e3;
   position: relative;
 }
 
@@ -121,31 +120,21 @@ table tr td:first-of-type {
     transition: all 0.5s;
 }
 
-@media screen and (max-width: 800px) {
-    #search{
-        /* Omit border (mss andere border-box ofzo?) */
-        width: calc(100% - 6px);
-    }
-    #searchSubmit{
-        width: 100%;
-        text-align: center;
-        border-radius: 0px;
-    }
-}
+
 @media screen and (min-width: 500px) {
-    /* .card-container {
-        flex: 0 0 45%;
-    } */
-}
+    .flex-container {
+      flex-direction: row;
+    }
 
-@media screen and (min-width: 800px) {
-    /* .card-container {
-        flex: 0 0 20%;
-    } */
-}
+    .sidebar-wrapper {
+      flex-direction: column;
+      position: sticky;
+      top: 1rem;
+    }
 
-@media screen and (min-width: 1500px) {
-    /* .card-container {
-        flex: 0 0 15%;
-    } */
+    .sidebar-module {
+      padding: 1rem 0;
+      border-bottom: 1px solid #d1d8e3;
+      position: relative;
+    }
 }

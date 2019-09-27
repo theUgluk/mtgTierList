@@ -55,8 +55,8 @@
           <div class="flex-container">
             <aside class="sidebar">
               <div class="sidebar-wrapper">
-                <h3>Filter cards</h3>
                 <div class="sidebar-module">
+                  <h3>Filter cards</h3>
                   <form method="get">
                       <input type="text" id="search" placeholder="Search" name="query" value="<?= isset($_GET['query']) ? $_GET['query'] : "" ?>" />
                       <small class="searchExplainer">
