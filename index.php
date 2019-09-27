@@ -49,7 +49,6 @@
 
 
         ?>
-        <br />
 
 
         <div class="wrapper">
@@ -67,15 +66,15 @@
                   </form>
                 </div>
                 <div class="sidebar-module">
-                  <!-- <span class="module-title">Show only:</span> -->
+                  <a href="./" class="sidebar-link">All</a>
                   <?php
                   foreach ($types as $type) {
                       // echo '<a href="?type=' . $type . '"><button class="btn">' . ucfirst($type) . '</button></a>';
                       // echo '<div><a href="?type=' . $type . '"><input type="radio" id="' . $type .'" name="card-type"><label for="' . $type .'">' . ucfirst($type) . '</label></a></div>';
                       echo '<a href="?type=' . $type . '" class="sidebar-link">' . ucfirst($type) . '</a>';
                   } ?>
-                </div>
 
+                </div>
               </div>
             </aside>
 
