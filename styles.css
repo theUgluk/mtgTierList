@@ -30,6 +30,7 @@ p {
 .flex-container {
   display: flex;
   flex-direction: column;
+
 }
 
 aside.sidebar {
@@ -69,10 +70,12 @@ aside.sidebar {
   display: block;
   padding: 0.25rem 0;
   color: #4888c7;
+  transition: all 0.5s;
 }
 
 .sidebar-link:hover {
   color: #1a1b1c;
+  transition: all 0.5s;
 }
 
 main.main-content {
@@ -101,12 +104,17 @@ input[type='text'] {
     overflow: hidden;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
     transition: all, 0.5s;
+    align-self: flex-start;
 }
 
 .card-container img {
     width: 100%;
     height: auto;
 }
+
+/* .card-container:hover {
+  flex: 0 0 300px;
+} */
 
 .card-info {
     padding: 0.5rem;
