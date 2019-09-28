@@ -12,10 +12,11 @@
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
+        <script src="main.js" type="text/javascript"></script>
 
     </head>
 
-    <body>
+    <body class="js-body">
 
         <?php
         require 'setup.php';
@@ -58,15 +59,16 @@
 
         <div class="wrapper">
           <div class="flex-container">
-            <aside class="sidebar">
+
+            <aside class="sidebar js-sidebar">
               <div class="sidebar-wrapper">
                 <div class="sidebar-module">
                   <h3>Filter cards</h3>
                   <form method="get">
                       <input type="text" id="search" placeholder="Search" name="query" value="<?= isset($_GET['query']) ? $_GET['query'] : "" ?>" />
-                      <small>
+                      <p><small>
                           You can use Scryfall query's here
-                      </small>
+                      </small></p>
                       <input type="submit" id="searchSubmit" class="btn" value="search" />
                   </form>
                 </div>
@@ -82,6 +84,9 @@
             </aside>
 
             <main class="main-content">
+
+              <span class="filters-fab js-filters-fab">Filter</span>
+
               <div style="display: flex; max-width: 100vw; flex-wrap: wrap; justify-content: space-evenly; ">
                   <?php
                   while (($row = fgetcsv($fileHandle, 0, ",")) !== FALSE) {
