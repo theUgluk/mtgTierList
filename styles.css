@@ -33,7 +33,7 @@ p {
 }
 
 aside.sidebar {
-  box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
   background-color: #FFF;
   padding: 1rem;
   z-index: 1;
@@ -99,7 +99,7 @@ input[type='text'] {
     background-color: #fff;
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
     transition: all, 0.5s;
 }
 
@@ -184,7 +184,7 @@ table tr td:first-of-type {
   padding: 0.7rem 1.25rem;
   color: white;
   background-color: #4888c7;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
   border-radius: 5px;
   z-index: 2;
 }

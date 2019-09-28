@@ -45,7 +45,7 @@
 
         $fileHandle = fopen("data.csv", "r");
         $apiUrl = "https://api.scryfall.com/";
-        $image = 'large';
+        $image = 'normal';
 
 
         ?>
