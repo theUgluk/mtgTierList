@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   filtersFab.addEventListener('click', function() {
     sidebar.classList.toggle('is-active');
-    console.log('Clicked');
   });
   //end
 
