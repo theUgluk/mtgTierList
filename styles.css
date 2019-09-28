@@ -108,7 +108,6 @@ input[type='text'] {
 .card-mark {
   text-align: center;
   flex: 1 0 49%;
-  /* display: block; */
 }
 
 .card-mark.card-mark-lower {
@@ -117,8 +116,8 @@ input[type='text'] {
   padding-top: 0.75rem;
 }
 
-.card-mark:first-child {
-  border-right: 1px solid #d1d8e3;
+.card-mark:nth-child(even) {
+  border-left: 1px solid #d1d8e3;
 }
 
 .mark-name {
