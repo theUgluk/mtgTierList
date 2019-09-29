@@ -3,6 +3,6 @@ Some project me and a friend hacked together in a few hours. Based on [JustLolaM
 
 Please note that the code is hideous, but like I mentioned, we hacked this together in a few hours.
 
-Thanks to CrapApples for the design and [Scryfall](https://scryfall.com/) for their excellent API.
+Thanks to CrabApples/Annihilatious for the design and [Scryfall](https://scryfall.com/) for their excellent API.
 
 Tool is (for now) available [here](https://www.cardsolutions.nl/jonas/index.php)
