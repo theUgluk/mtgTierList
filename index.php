@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="styles.css" type="text/css" rel="stylesheet">
+        <link href="vendor/font-awesome/css/all.css" rel="stylesheet">
 
     </head>
 
@@ -79,7 +80,7 @@
 
             <main class="main-content">
 
-              <span class="filters-fab js-filters-fab">Filter</span>
+              <span class="filters-fab js-filters-fab"><i class="fas fa-sort-amount-up"></i></span>
 
               <div style="display: flex; max-width: 100vw; flex-wrap: wrap; justify-content: space-evenly; ">
                   <?php
