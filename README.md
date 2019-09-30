@@ -6,3 +6,8 @@ Please note that the code is hideous, but like I mentioned, we hacked this toget
 Thanks to CrabApples/Annihilatious for the design and [Scryfall](https://scryfall.com/) for their excellent API.
 
 Tool is (for now) available [here](https://www.cardsolutions.nl/jonas/index.php)
+
+# Plans:
+  - Make it possible to select older sets
+  - Add a tag-system (have to ask the original list creator)
+  - Import other people's tier lists?
