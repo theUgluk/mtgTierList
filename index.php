@@ -14,41 +14,39 @@
     <body class="js-body">
 
         <?php
-        require 'setup.php';
-        require 'functions.php';
+            require 'setup.php';
+            require 'functions.php';
 
-        $types = array(
-            "artifact",
-            "creature",
-            "enchantment",
-            "instant",
-            "land",
-            "planeswalker",
-            "sorcery"
-        );
-        $foundNames = array();
-        if (isset($_GET['query'])) {
-            $foundNames = search_query($_GET['query']);
-        } else {
-            /*
-             * We're gonna keep track of the names of the cards of the type that's
-             * selected and filter them in the while. It's ugly as hell,
-             * but what in this script ain't?
-             */
-            if (isset($_GET['type']) && in_array($_GET['type'], $types, true)) {
-                $foundNames = get_type_data($_GET['type']);
+            $types = array(
+                "artifact",
+                "creature",
+                "enchantment",
+                "instant",
+                "land",
+                "planeswalker",
+                "sorcery"
+            );
+            $foundNames = array();
+            if (isset($_GET['query'])) {
+                $foundNames = search_query($_GET['query']);
+            } else {
+                /*
+                 * We're gonna keep track of the names of the cards of the type that's
+                 * selected and filter them in the while. It's ugly as hell,
+                 * but what in this script ain't?
+                 */
+                if (isset($_GET['type']) && in_array($_GET['type'], $types, true)) {
+                    $foundNames = get_type_data($_GET['type']);
+                }
             }
-        }
-        if (filemtime("data.csv") < strtotime("-30 min")) {
-            $url = "https://docs.google.com/spreadsheets/d/13sruU0j41C1gB-AO_kxK1tjRtyb50bYC9WmQLNwruOI/export?format=csv";
-            file_put_contents("data.csv", file_get_contents($url));
-        }
+            if (filemtime("data.csv") < strtotime("-30 min")) {
+                $url = "https://docs.google.com/spreadsheets/d/13sruU0j41C1gB-AO_kxK1tjRtyb50bYC9WmQLNwruOI/export?format=csv";
+                file_put_contents("data.csv", file_get_contents($url));
+            }
 
-        $fileHandle = fopen("data.csv", "r");
-        $apiUrl = "https://api.scryfall.com/";
-        $image = 'normal';
-
-
+            $fileHandle = fopen("data.csv", "r");
+            $apiUrl = "https://api.scryfall.com/";
+            $image = 'normal';
         ?>
 
 
