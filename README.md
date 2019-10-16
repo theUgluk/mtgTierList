@@ -12,6 +12,8 @@ These plans are in order of priority:
   - Make actually decent, thought-out PHP code
     - Interface for importing lists from different creators
     - Actual OOP
+  - Adding a templating engine
+    - Probably https://latte.nette.org/en/
   - Import other people's tier lists
   - Make it possible to select older sets
   - Add a tag-system (have to ask the original list creator)
