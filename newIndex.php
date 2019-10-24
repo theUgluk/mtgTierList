@@ -1,12 +1,7 @@
 <?php
-
-// Setup error reporting
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
+// Setup constants
+require_once dirname(__FILE__) . '/App/Base/Modules/Startup/Constants.php';
 
 // Setup autoloader
-require './autoloader.php';
-
-// Initialize main class
-$app = new App();
-echo $app->render();
+require_once(BASE . "/Modules/Autoloader/Autoloader.php");
+new Intro\Intro();
