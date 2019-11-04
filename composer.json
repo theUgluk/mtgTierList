@@ -1,0 +1,10 @@
+{
+    "require": {
+        "latte/latte": "^2.5"
+    },
+    "autoload": {
+        "files": [
+          "App/Base/Modules/Autoloader/Autoloader.php"
+        ]
+    }
+}

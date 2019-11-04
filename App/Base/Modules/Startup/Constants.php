@@ -6,4 +6,6 @@
   define("APP", getcwd());
   define("BASE", APP . "/Base/");
 
+  //Composer vendor folder
+  define("EXTERNAL", dirname(getcwd() . "../") . "/vendor/");
 ?>
